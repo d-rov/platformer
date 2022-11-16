@@ -17,34 +17,35 @@ export class Entity {
         ctx.fill();
     }
 
-    update() {
-        this.gravitySpeed += this.gravity
+    update(cnvs) {
+        // this.gravitySpeed += this.gravity
+        (this.yPos < cnvs.height - this.height) ? (this.gravitySpeed += this.gravity) : (this.gravitySpeed = 0)
         this.xPos += this.xSpeed
         this.yPos += this.ySpeed + this.gravitySpeed
-        this.hitBottom()
+        this.hitBottom(cnvs)
     }
 
-    hitBottom() {
-        // console.log(this.canvas.height)
-        const bottom = this.canvas.height - this.height
-        // console.log(bottom)
-        if (this.yPos > bottom)
+    hitBottom(cnvs) {
+        const bottom = cnvs.height - this.height
+        if (this.yPos >= bottom)
             this.yPos = bottom
+        if (this.yPos + this.height === cnvs.height)
+            this.ySpeed = 0
     }
 
     get x() {
         return this.xPos
     }
 
-    set x(xPos) {
-        this.xPos = xPos
-    }
+    // set x(xPos) {
+    //     this.xPos = xPos
+    // }
 
     get y() {
         return this.yPos
     }
 
-    set y(yPos) {
-        this.yPos = yPos
-    }
+    // set y(yPos) {
+    //     this.yPos = yPos
+    // }
 }

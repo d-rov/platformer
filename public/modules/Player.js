@@ -2,7 +2,7 @@ import { Entity } from "./Entity.js";
 
 export class Player extends Entity {
     constructor(xPos, yPos, width, height) {
-        super(xPos, yPos, 10, 20)
+        super(xPos, yPos, width, height)
     }
 
     draw(ctx) {

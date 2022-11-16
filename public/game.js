@@ -16,7 +16,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     player.draw(ctx)
-    player.update()
+    player.update(canvas)
 
     platList.forEach((el) => {
         el.draw(ctx)
@@ -28,8 +28,10 @@ draw()
 window.addEventListener('keydown', (e) => {
     switch(e.key) {
         case "ArrowUp":
-            console.log("jump")
-            player.y -= 10
+            // this needs to be capped so only one jump is allowed
+            if (player.ySpeed !== 0)
+                break
+            player.ySpeed -= 10
             break
         case "ArrowDown":
             console.log("duck")
